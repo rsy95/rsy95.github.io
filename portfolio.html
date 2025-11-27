@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Rishab Singh Yadav</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P62DLGGF');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZRRVP76FB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YZRRVP76FB');
+    </script>
+    <!-- End Google Analytics 4 -->
+
+    <!-- Mixpanel -->
+    <script type="text/javascript">
+        (function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+        for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+        MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+
+        // Initialize Mixpanel with your project token
+        mixpanel.init('c54ff8140aea43a7030ae729a5c71785', {
+            debug: true,
+            track_pageview: true,
+            persistence: 'localStorage'
+        });
+
+        // Track page view
+        mixpanel.track('Portfolio Page View', {
+            'page': window.location.pathname,
+            'title': document.title
+        });
+    </script>
+    <!-- End Mixpanel -->
+
+    <!-- Hotjar Tracking Code -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:6587134,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    <!-- End Hotjar -->
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "ucbw8t40ai");
+    </script>
+    <!-- End Microsoft Clarity -->
+
+    <!-- PostHog -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_22FmlMRAO9yd4VPGJazXdRjCmcIYy80sYnZr9XqY3N5', {api_host:'https://app.posthog.com'})
+    </script>
+    <!-- End PostHog -->
+
+    <!-- Amplitude -->
+<script src="https://cdn.amplitude.com/script/965b4d2b1cc9402769488c9643571d95.js"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('965b4d2b1cc9402769488c9643571d95', {"fetchRemoteConfig":true,"autocapture":{"attribution":true,"fileDownloads":true,"formInteractions":true,"pageViews":true,"sessions":true,"elementInteractions":true,"networkTracking":true,"webVitals":true,"frustrationInteractions":true}});</script>
+    <!-- End Amplitude -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P62DLGGF"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand"><a href="index.html">RSY</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="portfolio-hero">
+        <div class="container">
+            <h1 class="page-title">Portfolio</h1>
+            <p class="page-subtitle">Case studies showcasing analytics implementations, dashboard designs, and data governance audits</p>
+        </div>
+    </section>
+
+    <section class="portfolio-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="events">Event Tracking</button>
+                <button class="filter-btn" data-filter="dashboards">Dashboards</button>
+                <button class="filter-btn" data-filter="audits">Audits</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-grid-section">
+        <div class="container">
+            <div class="portfolio-grid">
+
+                <!-- Event Implementation Projects -->
+                <div class="portfolio-item" data-category="events">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">📊</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Event Tracking</span>
+                            <h3>E-commerce Conversion Funnel Tracking</h3>
+                            <p>Implemented comprehensive event tracking for a Shopify store, capturing user journey from product view to purchase completion.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">GA4</span>
+                                <span class="tech-badge">GTM</span>
+                                <span class="tech-badge">Shopify</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>40+ custom events tracked</li>
+                                <li>Enhanced e-commerce tracking</li>
+                                <li>Cart abandonment triggers</li>
+                                <li>User behavior flow analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="events">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">🎯</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Event Tracking</span>
+                            <h3>SaaS Product Analytics Implementation</h3>
+                            <p>Built event tracking infrastructure for a B2B SaaS platform to measure feature adoption and user engagement.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Mixpanel</span>
+                                <span class="tech-badge">Segment</span>
+                                <span class="tech-badge">Amplitude</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>Custom event taxonomy design</li>
+                                <li>User identification & properties</li>
+                                <li>Cohort analysis setup</li>
+                                <li>Feature flag tracking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="events">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">📱</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Event Tracking</span>
+                            <h3>Mobile App Event Tracking</h3>
+                            <p>Designed and implemented event tracking for iOS and Android apps to measure user activation and retention.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Mixpanel</span>
+                                <span class="tech-badge">Firebase</span>
+                                <span class="tech-badge">GTM</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>Cross-platform event standardization</li>
+                                <li>Push notification tracking</li>
+                                <li>In-app purchase events</li>
+                                <li>Session replay integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Projects -->
+                <div class="portfolio-item" data-category="dashboards">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">📈</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Dashboard Design</span>
+                            <h3>Executive Growth Dashboard</h3>
+                            <p>Created a real-time executive dashboard tracking key growth metrics and business KPIs for C-suite visibility.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Metabase</span>
+                                <span class="tech-badge">BigQuery</span>
+                                <span class="tech-badge">SQL</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>Real-time data sync</li>
+                                <li>Custom SQL queries for complex metrics</li>
+                                <li>Automated daily reports</li>
+                                <li>Mobile-responsive design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="dashboards">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">💹</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Dashboard Design</span>
+                            <h3>Marketing Performance Dashboard</h3>
+                            <p>Built comprehensive marketing analytics dashboard integrating data from Google Ads, Facebook Ads, and GA4.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Google Sheets</span>
+                                <span class="tech-badge">GA4</span>
+                                <span class="tech-badge">Supermetrics</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>Multi-channel attribution modeling</li>
+                                <li>ROI tracking across platforms</li>
+                                <li>Campaign performance comparison</li>
+                                <li>Automated data refresh</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="dashboards">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">🔄</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Dashboard Design</span>
+                            <h3>Product Metrics Dashboard</h3>
+                            <p>Designed product analytics dashboard in Mixpanel tracking activation, engagement, and retention metrics.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Mixpanel</span>
+                                <span class="tech-badge">Amplitude</span>
+                                <span class="tech-badge">Heap</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>Funnel conversion tracking</li>
+                                <li>Retention curve analysis</li>
+                                <li>Feature usage heatmaps</li>
+                                <li>Custom segmentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audit Projects -->
+                <div class="portfolio-item" data-category="audits">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">🔍</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Data Governance Audit</span>
+                            <h3>GA4 Implementation Audit</h3>
+                            <p>Comprehensive audit of existing GA4 implementation, identifying tracking gaps and data quality issues.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">GA4</span>
+                                <span class="tech-badge">GTM</span>
+                                <span class="tech-badge">Google Sheets</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>50+ issues identified and fixed</li>
+                                <li>Event naming standardization</li>
+                                <li>Data layer validation</li>
+                                <li>Cross-domain tracking fixes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="audits">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">🛡️</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Data Governance Audit</span>
+                            <h3>Privacy Compliance Audit</h3>
+                            <p>Conducted GDPR and privacy compliance audit for analytics implementation across web and mobile properties.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">Cookie Consent</span>
+                                <span class="tech-badge">GTM</span>
+                                <span class="tech-badge">Analytics</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>Cookie consent implementation</li>
+                                <li>PII data removal</li>
+                                <li>Data retention policies</li>
+                                <li>User opt-out mechanisms</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="audits">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="placeholder-image">
+                                <span class="image-icon">📋</span>
+                            </div>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-tag">Data Governance Audit</span>
+                            <h3>Marketing Tech Stack Audit</h3>
+                            <p>Full audit of marketing technology stack, identifying redundant tools and optimization opportunities.</p>
+                            <div class="portfolio-tech">
+                                <span class="tech-badge">HubSpot</span>
+                                <span class="tech-badge">Segment</span>
+                                <span class="tech-badge">Various Tools</span>
+                            </div>
+                            <ul class="portfolio-highlights">
+                                <li>15 tools audited</li>
+                                <li>Cost savings identified: 30%</li>
+                                <li>Integration optimization</li>
+                                <li>Data flow mapping</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Data?</h2>
+            <p>Let's discuss how I can help you build better analytics systems and unlock actionable insights.</p>
+            <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Rishab Singh Yadav. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://www.upwork.com/freelancers/~0192e7f3ac7bda2034?mp_source=portfolio_share" target="_blank">Upwork</a>
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="portfolio-script.js"></script>
+</body>
+</html>

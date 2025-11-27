@@ -1,0 +1,705 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #121212;
+    --bg-tertiary: #1a1a1a;
+    --text-primary: #e5e5e5;
+    --text-secondary: #a0a0a0;
+    --accent-primary: #ffffff;
+    --accent-secondary: #2a2a2a;
+    --border-color: #2a2a2a;
+    --hover-color: #1f1f1f;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-menu a:hover {
+    color: var(--text-primary);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.hero-rate {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
+.btn-primary:hover {
+    background: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--hover-color);
+    border-color: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+/* Section Styles */
+section {
+    padding: 6rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+/* About Section */
+.about {
+    background: var(--bg-secondary);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.about-tagline {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-style: italic;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Services Section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--text-secondary);
+    background: var(--hover-color);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.service-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Tools Section */
+.tools {
+    background: var(--bg-secondary);
+}
+
+.tools-category {
+    margin-bottom: 3rem;
+}
+
+.tools-category:last-child {
+    margin-bottom: 0;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tool-badge {
+    background: var(--bg-tertiary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.tool-badge:hover {
+    background: var(--hover-color);
+    border-color: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+/* Tools Grid with Logos */
+.tools-grid-with-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.5rem;
+}
+
+.tool-card {
+    background: var(--bg-tertiary);
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tool-card:hover {
+    background: var(--hover-color);
+    border-color: var(--text-secondary);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tool-logo {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.tool-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: brightness(1.1);
+}
+
+.tool-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.tool-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+/* Experience Section */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2.375rem;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    border: 3px solid var(--bg-primary);
+}
+
+.timeline-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.timeline-period {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.timeline-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Contact Section */
+.contact {
+    background: var(--bg-secondary);
+}
+
+.contact-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+.contact-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hubspot-form-wrapper {
+    background: var(--bg-tertiary);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* HubSpot Form Styling */
+.hs-form-frame {
+    width: 100% !important;
+}
+
+/* HubSpot Form Fields */
+.hbspt-form {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+.hbspt-form .hs-form-field {
+    margin-bottom: 1.5rem !important;
+}
+
+.hbspt-form label {
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+}
+
+.hbspt-form .hs-input {
+    width: 100% !important;
+    padding: 0.875rem !important;
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    color: var(--text-primary) !important;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+    transition: border-color 0.3s ease !important;
+}
+
+.hbspt-form .hs-input:focus {
+    outline: none !important;
+    border-color: var(--text-secondary) !important;
+}
+
+.hbspt-form input[type="text"],
+.hbspt-form input[type="email"],
+.hbspt-form input[type="tel"],
+.hbspt-form input[type="number"],
+.hbspt-form select,
+.hbspt-form textarea {
+    width: 100% !important;
+    padding: 0.875rem !important;
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    color: var(--text-primary) !important;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+}
+
+.hbspt-form textarea {
+    resize: vertical !important;
+    min-height: 120px !important;
+}
+
+.hbspt-form select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.7rem top 50% !important;
+    background-size: 1.2rem !important;
+    padding-right: 2.5rem !important;
+    appearance: none !important;
+}
+
+.hbspt-form select option {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* HubSpot Submit Button */
+.hbspt-form .hs-button {
+    width: 100% !important;
+    padding: 0.875rem 2rem !important;
+    background: var(--accent-primary) !important;
+    color: var(--bg-primary) !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: inherit !important;
+}
+
+.hbspt-form .hs-button:hover {
+    background: var(--text-secondary) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* HubSpot Error Messages */
+.hbspt-form .hs-error-msgs {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0.5rem 0 0 0 !important;
+}
+
+.hbspt-form .hs-error-msg {
+    color: #ef4444 !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.25rem !important;
+}
+
+/* HubSpot Field Descriptions */
+.hbspt-form .hs-field-desc {
+    color: var(--text-secondary) !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.25rem !important;
+}
+
+/* HubSpot Required Field Indicator */
+.hbspt-form .hs-form-required {
+    color: #ef4444 !important;
+}
+
+/* HubSpot Success Message */
+.hbspt-form .submitted-message {
+    background: rgba(34, 197, 94, 0.1) !important;
+    border: 1px solid rgba(34, 197, 94, 0.3) !important;
+    color: #22c55e !important;
+    padding: 1rem !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+}
+
+/* HubSpot Radio and Checkbox */
+.hbspt-form input[type="radio"],
+.hbspt-form input[type="checkbox"] {
+    width: auto !important;
+    margin-right: 0.5rem !important;
+    accent-color: var(--accent-primary) !important;
+}
+
+.hbspt-form .hs-form-radio,
+.hbspt-form .hs-form-checkbox {
+    margin-bottom: 0.5rem !important;
+}
+
+.hbspt-form .hs-form-radio label,
+.hbspt-form .hs-form-checkbox label {
+    display: inline !important;
+    font-weight: 400 !important;
+}
+
+/* HubSpot Legal Consent */
+.hbspt-form .hs-richtext {
+    color: var(--text-secondary) !important;
+    font-size: 0.875rem !important;
+}
+
+.hbspt-form .hs-richtext a {
+    color: var(--text-primary) !important;
+    text-decoration: underline !important;
+}
+
+/* Loading State */
+.hbspt-form .hs-loading {
+    color: var(--text-secondary) !important;
+}
+
+/* Footer */
+.footer {
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: rgba(10, 10, 10, 0.98);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .hubspot-form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .tools-grid-with-logos {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .tool-card {
+        padding: 1rem 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero {
+        padding: 6rem 0 3rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 4rem 0;
+    }
+}
