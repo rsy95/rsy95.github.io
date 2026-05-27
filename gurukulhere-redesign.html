@@ -729,6 +729,11 @@
       <h3 style="font-size:1.3rem;font-weight:800;color:var(--ink);margin-bottom:24px;">Get Your Free Demo 🎓</h3>
       <div id="demoForm">
         <div class="form-grid">
+         <!-- modify this form HTML and place wherever you want your form -->
+<form
+  action="https://formspree.io/f/xbdbqoro"
+  method="POST"
+>
           <div class="form-group"><label>Parent Name</label><input type="text" placeholder="Your name"/></div>
           <div class="form-group"><label>Student Name</label><input type="text" placeholder="Student's name"/></div>
           <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"/></div>
@@ -758,7 +763,8 @@
             </select>
           </div>
         </div>
-        <button class="form-submit" onclick="submitForm()">Book My Free Demo Session 🎯</button>
+        <button type="submit" class="form-submit" onclick="submitForm()">Book My Free Demo Session 🎯</button>
+      </form>
       </div>
       <div class="success-msg" id="successMsg">
         <div class="success-icon">🎉</div>
