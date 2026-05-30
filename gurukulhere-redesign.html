@@ -274,6 +274,64 @@
   .attn-type { font-size: 1rem; color: white; font-weight: 700; }
   .attn-box.highlight .attn-sublabel { color: rgba(255,255,255,0.85); }
 
+  /* INTERACTIVE CALCULATOR */
+  .calculator-section { background: linear-gradient(135deg, #fff4ef 0%, #f5f3ff 100%); }
+  .calculator-container {
+    background: var(--white); border-radius: 24px;
+    padding: 40px; box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .calculator-header { text-align: center; margin-bottom: 40px; }
+  .calculator-header h3 { font-size: 1.3rem; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+  .calculator-header p { font-size: 0.95rem; color: var(--ink-mid); }
+  .calculator-input { margin-bottom: 40px; }
+  .calculator-input label { display: block; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 16px; text-align: center; }
+  .calculator-input label span { color: var(--brand); font-weight: 900; }
+  .slider {
+    width: 100%; height: 12px; border-radius: 999px;
+    appearance: none; outline: none;
+    background: linear-gradient(90deg, #FF6B35 0%, #FBBF24 33%, #10B981 66%, #4C6FFF 100%);
+    box-shadow: 0 4px 12px rgba(255,107,53,0.2);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .slider:hover { height: 16px; box-shadow: 0 6px 20px rgba(255,107,53,0.3); }
+  .slider::-webkit-slider-thumb {
+    appearance: none; width: 28px; height: 28px; border-radius: 50%;
+    background: white; border: 3px solid var(--brand);
+    box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .slider::-moz-range-thumb {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: white; border: 3px solid var(--brand);
+    box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .slider-labels { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); }
+  .calculator-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+  .result-card {
+    background: var(--bg); border-radius: 16px; padding: 24px; text-align: center;
+    border: 2px solid var(--border); transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .result-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--card-accent, var(--brand)); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.3s;
+  }
+  .result-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--card-accent, var(--brand)); }
+  .result-card:hover::before { transform: scaleX(1); }
+  .result-card h4 { font-size: 0.95rem; font-weight: 800; color: var(--ink); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .emoji-container { font-size: 2.5rem; margin: 12px 0; min-height: 50px; display: flex; align-items: center; justify-content: center; animation: bounce 0.6s ease-out; }
+  @keyframes bounce { 0%{transform:scale(0);opacity:0} 50%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }
+  .result-percentage { font-size: 1.8rem; font-weight: 900; margin: 8px 0; color: var(--brand); }
+  .mass-batch { --card-accent: #FF6B35; }
+  .gurukul-3 { --card-accent: #FBBF24; }
+  .gurukul-1 { --card-accent: #10B981; }
+  .result-card p { font-size: 0.85rem; color: var(--ink-soft); font-weight: 600; margin-top: 8px; }
+  .calculator-cta { text-align: center; margin-top: 32px; }
+
   /* TESTIMONIALS */
   .testimonials { background: var(--white); }
   .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
@@ -647,6 +705,45 @@
   </div>
 </section>
 
+<!-- INTERACTIVE CALCULATOR -->
+<section class="calculator-section">
+  <div class="container">
+    <div class="section-tag orange">✦ Calculate Attention</div>
+    <h2 class="section-title">See Attention Density in Action</h2>
+    <p class="section-sub">Adjust the batch size slider to see how attention varies across different learning environments.</p>
+    <div class="calculator-container">
+      <div class="calculator-input">
+        <label for="batchSize">Typical Batch Size: <span id="batchValue">60</span> students</label>
+        <input type="range" id="batchSize" min="1" max="100" value="60" class="slider">
+        <div class="slider-labels"><span>1</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+      </div>
+      <div class="calculator-results">
+        <div class="result-card mass-batch">
+          <h4>Mass Batch</h4>
+          <div class="emoji-container" id="emojiMass">😕</div>
+          <div class="result-percentage" id="massResult">1.6%</div>
+          <p>Attention per student</p>
+        </div>
+        <div class="result-card gurukul-3">
+          <h4>Gurukul 1:3</h4>
+          <div class="emoji-container" id="emojiMicro">🙂</div>
+          <div class="result-percentage">33%</div>
+          <p>Attention per student</p>
+        </div>
+        <div class="result-card gurukul-1">
+          <h4>Gurukul 1:1 ⭐</h4>
+          <div class="emoji-container" id="emojiOne">😍</div>
+          <div class="result-percentage">100%</div>
+          <p>Undivided attention</p>
+        </div>
+      </div>
+      <div class="calculator-cta">
+        <a href="#demo" class="btn-primary" style="display:inline-flex;">Experience the Difference 🚀</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="container">
@@ -924,6 +1021,86 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.3 });
+</script>
+<!-- Calculator behavior (copied from funky kids calculator) -->
+<script>
+  const batchSlider = document.getElementById('batchSize');
+  const batchValue = document.getElementById('batchValue');
+  const massResult = document.getElementById('massResult');
+  const emojiMass = document.getElementById('emojiMass');
+  const emojiMicro = document.getElementById('emojiMicro');
+  const emojiOne = document.getElementById('emojiOne');
+
+  function updateAttentionCalculator(value) {
+    const batchSize = Number(value || 60);
+    const attentionShare = Math.max(0.1, 100 / batchSize);
+    const attentionPct = attentionShare.toFixed(1);
+
+    // Update batch size label
+    if (batchValue) batchValue.textContent = batchSize;
+    if (massResult) massResult.textContent = attentionPct + '%';
+
+    // Mass Batch emoji density visualization
+    let densityEmoji = '😕';
+    let densityCount = 0;
+
+    if (attentionShare < 2) {
+      densityEmoji = '😭';
+      densityCount = 8;
+    } else if (attentionShare < 5) {
+      densityEmoji = '😢';
+      densityCount = 7;
+    } else if (attentionShare < 10) {
+      densityEmoji = '😞';
+      densityCount = 6;
+    } else if (attentionShare < 20) {
+      densityEmoji = '😕';
+      densityCount = 5;
+    } else if (attentionShare < 35) {
+      densityEmoji = '😐';
+      densityCount = 3;
+    } else if (attentionShare < 50) {
+      densityEmoji = '🙂';
+      densityCount = 1;
+    } else {
+      densityEmoji = '😊';
+      densityCount = 0;
+    }
+
+    if (emojiMass) {
+      emojiMass.innerHTML = '';
+      const mainEmoji = document.createElement('div');
+      mainEmoji.textContent = densityEmoji;
+      mainEmoji.style.fontSize = '3.5rem';
+      mainEmoji.style.zIndex = '10';
+      mainEmoji.style.position = 'relative';
+      emojiMass.appendChild(mainEmoji);
+
+      for (let i = 0; i < densityCount; i++) {
+        const layer = document.createElement('div');
+        layer.className = 'emoji-layer';
+        layer.textContent = densityEmoji;
+        layer.style.animationDelay = (i * 0.15) + 's';
+        emojiMass.appendChild(layer);
+      }
+    }
+
+    if (emojiMicro) emojiMicro.textContent = '🙂';
+    if (emojiOne) emojiOne.textContent = '😍';
+
+    [emojiMass, emojiMicro, emojiOne].forEach(emoji => {
+      if (!emoji) return;
+      emoji.style.animation = 'none';
+      setTimeout(() => {
+        emoji.style.animation = 'bounce 0.6s ease-out';
+      }, 10);
+    });
+  }
+
+  if (batchSlider) {
+    batchSlider.addEventListener('input', (event) => updateAttentionCalculator(event.target.value));
+    updateAttentionCalculator(batchSlider.value);
+  }
 </script>
 </body>
 </html>
