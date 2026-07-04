@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adaptive Multi-Exam Study OS</title>
+  <meta name="description" content="Personal AI study planner dashboard for UPSC, banking, SSC, CTET, and state exams.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101114;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.13);
+      --text: #f7f2e9;
+      --muted: #aeb4bc;
+      --mint: #70d7a6;
+      --coral: #ff8066;
+      --amber: #e5b64a;
+      --iris: #8b7cf6;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 4%, rgba(112, 215, 166, 0.22), transparent 28rem),
+        radial-gradient(circle at 82% 18%, rgba(139, 124, 246, 0.18), transparent 31rem),
+        linear-gradient(135deg, #101114, #171a1f 58%, #15120f);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1420px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 14px 0 28px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      border-radius: 8px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 14px;
+      height: calc(100vh - 28px);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px;
+    }
+
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--mint), var(--iris));
+      color: #101114;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .brand h1 {
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .nav {
+      display: grid;
+      gap: 5px;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 10px 11px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .nav a.active,
+    .nav a:hover {
+      color: var(--text);
+      background: var(--panel-strong);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--mint);
+      flex: 0 0 auto;
+    }
+
+    .countdown {
+      margin-top: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .countdown strong {
+      display: block;
+      margin: 8px 0 3px;
+      font-size: 28px;
+    }
+
+    .main {
+      display: grid;
+      gap: 14px;
+    }
+
+    .topbar {
+      padding: 18px;
+    }
+
+    .topbar-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .topbar h2 {
+      margin-top: 6px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.02;
+      max-width: 870px;
+    }
+
+    .topbar p.description {
+      margin-top: 12px;
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .search input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric {
+      padding: 16px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 14px;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .panel h2 {
+      font-size: 22px;
+      margin-top: 4px;
+    }
+
+    .task-list,
+    .stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .task,
+    .mini-card,
+    .lane-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .task-top,
+    .task-actions,
+    .line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 12px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .red {
+      color: var(--coral);
+      background: rgba(255, 128, 102, 0.12);
+      border-color: rgba(255, 128, 102, 0.28);
+    }
+
+    .yellow {
+      color: var(--amber);
+      background: rgba(229, 182, 74, 0.12);
+      border-color: rgba(229, 182, 74, 0.28);
+    }
+
+    .green {
+      color: var(--mint);
+      background: rgba(112, 215, 166, 0.12);
+      border-color: rgba(112, 215, 166, 0.28);
+    }
+
+    .task h3 {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .task p {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .task-actions {
+      justify-content: flex-start;
+      margin-top: 14px;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      padding: 9px 12px;
+      font-weight: 650;
+    }
+
+    .btn.primary {
+      background: var(--mint);
+      color: #101114;
+      border-color: transparent;
+    }
+
+    .progress {
+      overflow: hidden;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      margin-top: 8px;
+    }
+
+    .bar {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--mint), var(--iris));
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .lane {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      min-height: 190px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .lane h3 {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .lane-card {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .footer {
+      padding: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1050px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+      }
+
+      .nav {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .nav a {
+        justify-content: center;
+      }
+
+      .nav a span.label {
+        display: none;
+      }
+
+      .topbar-inner,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100% - 18px, 1420px);
+      }
+
+      .topbar h2 {
+        font-size: 31px;
+      }
+
+      .metrics,
+      .board {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav a span.label {
+        display: inline;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar glass">
+      <div class="brand">
+        <div class="mark">OS</div>
+        <div>
+          <p class="eyebrow">Study OS</p>
+          <h1>Multi-Exam Planner</h1>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Planner views">
+        <a class="active" href="#dashboard"><span class="dot"></span><span class="label">Dashboard</span></a>
+        <a href="#today"><span class="dot"></span><span class="label">Today</span></a>
+        <a href="#revision"><span class="dot"></span><span class="label">Revision</span></a>
+        <a href="#syllabus"><span class="dot"></span><span class="label">Syllabus</span></a>
+        <a href="#analytics"><span class="dot"></span><span class="label">Analytics</span></a>
+        <a href="#calendar"><span class="dot"></span><span class="label">Calendar</span></a>
+        <a href="#kanban"><span class="dot"></span><span class="label">Kanban</span></a>
+        <a href="#notes"><span class="dot"></span><span class="label">Notes</span></a>
+        <a href="#goals"><span class="dot"></span><span class="label">Goals</span></a>
+        <a href="#settings"><span class="dot"></span><span class="label">Settings</span></a>
+      </nav>
+      <section class="countdown">
+        <p class="eyebrow">Next exam</p>
+        <strong>SBI PO</strong>
+        <p>29 days remaining from 4 July 2026.</p>
+      </section>
+    </aside>
+
+    <main class="main" id="dashboard">
+      <header class="topbar glass">
+        <div class="topbar-inner">
+          <div>
+            <p class="eyebrow">Saturday, 4 July 2026</p>
+            <h2>Your competitive exam command center.</h2>
+            <p class="description">A premium study operating system for UPSC, SBI PO, IBPS PO, SSC CGL, UPPSC PCS, and CTET. The Excel planner becomes the first import; future work belongs in the database.</p>
+          </div>
+          <label class="search">
+            <span>Search</span>
+            <input type="search" placeholder="Topics, tasks, notes, exams">
+          </label>
+        </div>
+      </header>
+
+      <section class="metrics" aria-label="Key study metrics">
+        <article class="metric glass"><span>Today's study</span><strong>9.5h</strong><span>From Daily Tracker</span></article>
+        <article class="metric glass"><span>Upcoming 24h</span><strong>2</strong><span>Urgency sorted</span></article>
+        <article class="metric glass"><span>Pending revision</span><strong>3</strong><span>Spaced repetition queue</span></article>
+        <article class="metric glass"><span>Active exams</span><strong>6</strong><span>Unlimited exams supported</span></article>
+      </section>
+
+      <section class="grid">
+        <div class="panel glass" id="today">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Today's planner</p>
+              <h2>Exactly what to study now</h2>
+            </div>
+            <button class="btn primary">Quick add</button>
+          </div>
+          <div class="task-list">
+            <article class="task">
+              <div class="task-top">
+                <span class="eyebrow">SBI PO</span>
+                <span class="badge red">Red-Urgent</span>
+              </div>
+              <h3>Quant + Reasoning</h3>
+              <p>Diagnostic mock, error log setup, simplification, approximation, puzzles, and seating arrangement.</p>
+              <div class="task-actions">
+                <button class="btn primary">Start</button>
+                <button class="btn">Reschedule</button>
+                <button class="btn">Complete</button>
+              </div>
+            </article>
+            <article class="task">
+              <div class="task-top">
+                <span class="eyebrow">SBI PO</span>
+                <span class="badge red">Red-Urgent</span>
+              </div>
+              <h3>Number Series + Data Interpretation</h3>
+              <p>Quadratic equations, tabular and bar DI, syllogism, reading comprehension, and previous mock error review.</p>
+              <div class="task-actions">
+                <button class="btn primary">Start</button>
+                <button class="btn">Skip</button>
+                <button class="btn">Complete</button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <aside class="panel glass" id="revision">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Revision system</p>
+              <h2>Due next</h2>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="mini-card">
+              <div class="line"><strong>Simplification</strong><span class="badge green">D+3</span></div>
+              <p class="eyebrow">Quant - SBI PO - 7 Jul</p>
+            </div>
+            <div class="mini-card">
+              <div class="line"><strong>Data Interpretation</strong><span class="badge yellow">D+7</span></div>
+              <p class="eyebrow">Quant - SBI PO - 11 Jul</p>
+            </div>
+            <div class="mini-card">
+              <div class="line"><strong>Constitutional Framework</strong><span class="badge green">D+15</span></div>
+              <p class="eyebrow">Polity - UPSC - 19 Jul</p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="grid">
+        <div class="panel glass" id="syllabus">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Syllabus manager</p>
+              <h2>Exam progress</h2>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="mini-card"><div class="line"><strong>SBI PO</strong><span>0%</span></div><div class="progress"><div class="bar" style="width: 4%"></div></div></div>
+            <div class="mini-card"><div class="line"><strong>IBPS PO</strong><span>0%</span></div><div class="progress"><div class="bar" style="width: 4%"></div></div></div>
+            <div class="mini-card"><div class="line"><strong>SSC CGL</strong><span>0%</span></div><div class="progress"><div class="bar" style="width: 4%"></div></div></div>
+            <div class="mini-card"><div class="line"><strong>UPSC</strong><span>0%</span></div><div class="progress"><div class="bar" style="width: 4%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="panel glass" id="analytics">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Analytics</p>
+              <h2>Smart signals</h2>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="mini-card"><div class="line"><strong>Weak area</strong><span class="badge red">Quant speed</span></div></div>
+            <div class="mini-card"><div class="line"><strong>Study streak</strong><span class="badge green">Ready</span></div></div>
+            <div class="mini-card"><div class="line"><strong>Projected finish</strong><span class="badge yellow">Needs live data</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel glass" id="kanban">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Kanban</p>
+            <h2>Automatic progress lanes</h2>
+          </div>
+          <span class="badge red">3 urgent</span>
+        </div>
+        <div class="board">
+          <div class="lane"><h3>Not Started</h3><div class="lane-card">Diagnostic mock</div><div class="lane-card">Number series</div><div class="lane-card">Polity foundation</div></div>
+          <div class="lane"><h3>In Progress</h3><div class="lane-card">Timer sessions appear here</div></div>
+          <div class="lane"><h3>Completed</h3><div class="lane-card">Completed tasks update progress</div></div>
+          <div class="lane"><h3>Skipped</h3><div class="lane-card">Skipped tasks enter reschedule queue</div></div>
+        </div>
+      </section>
+
+      <footer class="footer glass" id="settings">
+        This static GitHub Pages preview shows the planner experience as a separate webpage. The full repository also contains the Next.js app, Supabase schema, and Excel import logic for database-backed deployment on Vercel.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
